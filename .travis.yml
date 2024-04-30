@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+install:
+  - echo "nothing needs"
+
+before_script:
+  - echo "no tests"
+
+script:
+  - docker-compose --version
+  - docker-compose -f docker-compose-build.yaml build --parallel
+  - docker tag reverseproxy tnanhd/reverseproxy:$DOCKER_TAG
+  - docker tag udagram-frontend tnanhd/udagram-frontend:$DOCKER_TAG
+  - docker tag udagram-api-user tnanhd/udagram-api-user:$DOCKER_TAG
+  - docker tag udagram-api-feed tnanhd/udagram-api-feed:$DOCKER_TAG
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push tnanhd/reverseproxy:$DOCKER_TAG
+  - docker push tnanhd/udagram-frontend:$DOCKER_TAG
+  - docker push tnanhd/udagram-api-user:$DOCKER_TAG
+  - docker push tnanhd/udagram-api-feed:$DOCKER_TAG
