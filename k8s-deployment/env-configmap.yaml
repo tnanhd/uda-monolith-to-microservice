@@ -8,4 +8,4 @@ data:
   AWS_BUCKET: "udamod3-018364567144-dev"
   AWS_REGION: "us-east-1"
   AWS_PROFILE: "default"
-  URL: "http://localhost:8100"
+  URL: "http://a17293b3b474c4aba83bfbc2abcaa960-58993556.us-east-1.elb.amazonaws.com/"

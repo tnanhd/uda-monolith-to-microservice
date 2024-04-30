@@ -33,7 +33,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 router.get("/", async (req: Request, res: Response) => {
   let pid = uuidv4();
   console.log(
-    new Date().toLocaleString + `: ${pid} - Fetching feed items start`
+    new Date().toLocaleString() + `: ${pid} - Fetching feed items start`
   );
   const items = await FeedItem.findAndCountAll({ order: [["id", "DESC"]] });
   items.rows.map((item) => {
@@ -42,7 +42,7 @@ router.get("/", async (req: Request, res: Response) => {
     }
   });
   console.log(
-    new Date().toLocaleString + `: ${pid} - Finished fetching feed items`
+    new Date().toLocaleString() + `: ${pid} - Finished fetching feed items`
   );
   res.send(items);
 });
