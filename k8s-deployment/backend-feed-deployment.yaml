@@ -54,3 +54,9 @@ spec:
                   name: udamod3-secret
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /api/v0/feed
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 3
